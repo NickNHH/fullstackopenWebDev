@@ -13,13 +13,22 @@ const Hello = (props) => {
     )
 };
 
+const Display = ({counter}) => <div>{counter}</div>;
+
+const Button = ({ handleClick, text }) => (
+    <button onClick={handleClick}>
+        {text}
+    </button>
+);
+
 const App = () => {
     const name = "Peter";
     const age = "10";
     const [counter, setCounter] = useState(0);
 
-    const handleClick = () => setCounter(counter + 1);
-    const resetCounter = () => setCounter(0);
+    const increaseByOne = () => setCounter(counter + 1);
+    const decreaseByOne = () => setCounter(counter - 1);
+    const setToZero = () => setCounter(0);
 
     console.log('rendering...', counter);
 
@@ -29,9 +38,19 @@ const App = () => {
             <Hello name="Maya" age={26 + 10}/>
             <Hello name={name} age={age}/>
             <br/>
-            <div>{counter}</div>
-            <button onClick={handleClick}>plus</button>
-            <button onClick={resetCounter}>reset</button>
+            <Display counter={counter}/>
+            <Button
+                handleClick={increaseByOne}
+                text='plus'
+            />
+            <Button
+                handleClick={setToZero}
+                text='zero'
+            />
+            <Button
+                handleClick={decreaseByOne}
+                text='minus'
+            />
         </>
     )
 };
